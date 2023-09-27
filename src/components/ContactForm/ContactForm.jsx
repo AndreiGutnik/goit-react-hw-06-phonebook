@@ -1,4 +1,4 @@
-import React from 'react';
+import Notiflix from 'notiflix';
 import { nanoid } from 'nanoid';
 import { Formik, ErrorMessage } from 'formik';
 import { object, string } from 'yup';
@@ -11,6 +11,9 @@ import {
   IconUser,
   FormText,
 } from './ContactForm.styled';
+import { useDispatch, useSelector } from 'react-redux';
+import { addContact } from 'redux/actions';
+import { getContacts } from 'redux/selectors';
 
 const initialValues = {
   name: '',
@@ -39,9 +42,18 @@ const validationScheme = object().shape({
 export const ContactForm = ({ onSubmit }) => {
   const labelNameId = nanoid();
   const labelNumberId = nanoid();
+  const contacts = useSelector(getContacts);
+  const dispatch = useDispatch();
 
-  const onSubmitForm = (values, { resetForm }) => {
-    onSubmit(values);
+  const onSubmitForm = ({ name, number }, { resetForm }) => {
+    const existingName = contacts.some(
+      contact => contact.name.trim().toLowerCase() === name.trim().toLowerCase()
+    );
+    if (existingName) {
+      Notiflix.Notify.failure(`${name} is already in contacts`);
+      return;
+    }
+    dispatch(addContact(name.trim(), number));
     resetForm();
   };
 

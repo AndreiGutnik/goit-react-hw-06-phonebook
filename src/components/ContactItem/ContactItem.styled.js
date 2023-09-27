@@ -23,6 +23,7 @@ export const Button = styled.button`
   border-radius: 4px;
   padding: 4px 8px;
   cursor: pointer;
+  background-color: #ffffff;
 
   &:hover,
   &:focus {

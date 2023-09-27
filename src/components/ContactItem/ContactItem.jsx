@@ -1,13 +1,20 @@
-import React from 'react';
 import { ContacItem, Text, Button } from './ContactItem.styled';
+import { useDispatch } from 'react-redux';
+import { deleteContact } from 'redux/actions';
 
-export function ContactItem({ contact: { id, name, number }, onDelete }) {
+export function ContactItem({ contact: { id, name, number } }) {
+  const dispatch = useDispatch();
+
   return (
     <ContacItem>
       <Text>
         {name}: <span>{number}</span>
       </Text>
-      <Button type="button" data-id={id} onClick={onDelete}>
+      <Button
+        type="button"
+        data-id={id}
+        onClick={() => dispatch(deleteContact(id))}
+      >
         Delete
       </Button>
     </ContacItem>
