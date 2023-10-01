@@ -1,7 +1,7 @@
 import { nanoid } from 'nanoid';
 import { FilterStyle, IconSearch, Input, InputWrap } from './Filter.styled';
 import { useDispatch } from 'react-redux';
-import { filteredContacts } from 'redux/actions';
+import { filteredContacts } from 'redux/filterSlice';
 
 export function Filter() {
   const dispatch = useDispatch();

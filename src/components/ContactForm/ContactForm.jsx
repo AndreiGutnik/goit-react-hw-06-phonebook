@@ -12,8 +12,8 @@ import {
   FormText,
 } from './ContactForm.styled';
 import { useDispatch, useSelector } from 'react-redux';
-import { addContact } from 'redux/actions';
-import { getContacts } from 'redux/selectors';
+import { getContacts } from 'redux/contactsSlice';
+import { addContact } from 'redux/contactsSlice';
 
 const initialValues = {
   name: '',

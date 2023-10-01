@@ -1,39 +1,24 @@
-import { combineReducers } from 'redux';
-import { initContacts } from './constants';
+// import { createReducer } from '@reduxjs/toolkit';
+// import { initContacts } from './constants';
+// import { addContact, deleteContact, filteredContacts } from './actions';
 
-const getInitialContacts = () => {
-  const contactsLocal = localStorage.getItem('contacts');
-  if (contactsLocal) {
-    return JSON.parse(contactsLocal);
-  }
-  return initContacts;
-};
+// const getInitialContacts = () => {
+//   const contactsLocal = localStorage.getItem('contacts');
+//   if (contactsLocal) {
+//     return JSON.parse(contactsLocal);
+//   }
+//   return initContacts;
+// };
 
-const initialContacts = getInitialContacts();
+// export const contactsReducer = createReducer(getInitialContacts(), builder => {
+//   builder
+//     .addCase(addContact, (state, action) => state.push(action.payload))
+//     .addCase(deleteContact, (state, action) => {
+//       const index = state.findIndex(contact => contact.id === action.payload);
+//       state.splice(index, 1);
+//     });
+// });
 
-const contactsReducer = (state = initialContacts, action) => {
-  switch (action.type) {
-    case 'contacts/addContact':
-      return [...state, action.payload];
-    case 'contacts/deleteContact':
-      return state.filter(({ id }) => id !== action.payload);
-    default:
-      return state;
-  }
-};
-
-const initialFilter = '';
-
-const filterReducer = (state = initialFilter, action) => {
-  switch (action.type) {
-    case 'contacts/filteredContacts':
-      return action.payload;
-    default:
-      return state;
-  }
-};
-
-export const rootReducer = combineReducers({
-  contacts: contactsReducer,
-  filter: filterReducer,
-});
+// export const filterReducer = createReducer('', builder => {
+//   builder.addCase(filteredContacts, (state, action) => action.payload);
+// });
