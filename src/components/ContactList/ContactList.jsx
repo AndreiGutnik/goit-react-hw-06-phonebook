@@ -13,6 +13,7 @@ export function ContactList() {
   );
 
   if (!contacts.length) return <p>The Phonebook is empty!</p>;
+  if (!filtered.length) return null;
   return (
     <PhonebookList>
       {filtered.map(contact => (

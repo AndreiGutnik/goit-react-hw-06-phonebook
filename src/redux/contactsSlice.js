@@ -10,14 +10,6 @@ export const getContacts = state => {
   return list;
 };
 
-// const getInitialContacts = () => {
-//   const contactsLocal = localStorage.getItem('contacts');
-//   if (contactsLocal) {
-//     return JSON.parse(contactsLocal);
-//   }
-//   return initContacts;
-// };
-
 const contactsSlice = createSlice({
   name: 'contacts',
   initialState: initContacts,
@@ -26,12 +18,11 @@ const contactsSlice = createSlice({
       reducer(state, action) {
         state.list.push(action.payload);
       },
-      prepare(name, number) {
+      prepare(contact) {
         return {
           payload: {
+            ...contact,
             id: nanoid(),
-            name,
-            number,
           },
         };
       },

@@ -53,7 +53,8 @@ export const ContactForm = ({ onSubmit }) => {
       Notiflix.Notify.failure(`${name} is already in contacts`);
       return;
     }
-    dispatch(addContact(name.trim(), number));
+    const contact = { name: name.trim(), number };
+    dispatch(addContact(contact));
     resetForm();
   };
 
